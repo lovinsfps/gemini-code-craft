@@ -66,7 +66,7 @@ const generateCode = async (
 
   const parts = [
     { text: selectedText },
-    { text: `language: ${language}` },
+    { text: prePrompt == "" ? `` : `language: ${language}` },
     {
       text: prePrompt,
     },
