@@ -21,6 +21,10 @@
         "title": "Craft Code using Gemini Google API"
       },
       {
+        "command": "extension.executePrompt",
+        "title": "Prompt using Gemini Google API"
+      },
+      {
         "command": "extension.saveToken",
         "title": "Set Gemini Google API Token"
       }
@@ -30,6 +34,12 @@
         "command": "extension.generateCode",
         "key": "ctrl+shift+capslock",
         "mac": "cmd+shift+capslock",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.executePrompt",
+        "key": "ctrl+shift+alt+capslock",
+        "mac": "cmd+shift+alt+capslock",
         "when": "editorTextFocus"
       }
     ],

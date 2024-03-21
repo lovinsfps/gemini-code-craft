@@ -10,7 +10,8 @@ const MODEL_NAME = "gemini-pro";
 
 const generateCode = async (
   selectedText: string,
-  language: string
+  language: string,
+  prePrompt: string,
 ): Promise<string> => {
   const API_KEY = getToken();
   if (!API_KEY) {
@@ -28,7 +29,7 @@ const generateCode = async (
     return "";
   }
 
-  vscode.window.showInformationMessage("Crafting code....");
+  vscode.window.showInformationMessage(prePrompt == "" ? "Executing prompt..." : "Crafting code...");
 
   vscode.workspace
     .getConfiguration("generateCodeUsingGemini")
@@ -67,7 +68,7 @@ const generateCode = async (
     { text: selectedText },
     { text: `language: ${language}` },
     {
-      text: "Only code no summary or description. Also no code blocks using ```code```. ",
+      text: prePrompt,
     },
   ];
 
@@ -80,7 +81,7 @@ const generateCode = async (
   vscode.workspace
     .getConfiguration("generateCodeUsingGemini")
     .update("isGenerating", false, true);
-  vscode.window.showInformationMessage("Code Crafted!");
+  vscode.window.showInformationMessage(prePrompt == "" ? "Prompt executed" : "Code Crafted!");
   return response;
 };
 

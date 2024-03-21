@@ -10,7 +10,23 @@ export function activate(context: vscode.ExtensionContext) {
             const selectedText = editor.document.getText(selection);
 			const language = editor.document.languageId;
 
-            const replacedText = await generateCode(selectedText, language);
+            const replacedText = await generateCode(selectedText, language, "Only code no summary or description. Also no code blocks using ```code```. ");
+
+            editor.edit(editBuilder => {
+                editBuilder.replace(selection, replacedText);
+            });
+        }
+    });
+
+    let executePromptCommand = vscode.commands.registerCommand('extension.executePrompt', async () => {
+        const editor = vscode.window.activeTextEditor;
+
+        if (editor) {
+            const selection = editor.selection;
+            const selectedText = editor.document.getText(selection);
+			const language = editor.document.languageId;
+
+            const replacedText = await generateCode(selectedText, language, "");
 
             editor.edit(editBuilder => {
                 editBuilder.replace(selection, replacedText);
@@ -31,6 +47,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(generateCodeCommand);
+    context.subscriptions.push(executePromptCommand);
     context.subscriptions.push(saveToken);
 }
 
