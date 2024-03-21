@@ -24,6 +24,12 @@ Streamline your coding workflow with AI-powered assistance! This Visual Studio C
 
 The generated code will replace the selected prompt.
 
+## Execute Prompt
+
+1. Open a new or existing project in Visual Studio Code.
+2. Write a prompt in the editor and select it.
+3. Press `Ctrl`+`Shift`+`Alt`+`CapsLock` to execute prompt or Press `Ctrl`+`Shift`+`P` and select `Prompt using Gemini API` to to execute prompt.
+
 ## Contributing
 
 Contributions are welcome! Please create an [issue](https://github.com/lovinsfps/gemini-code-craft/issues) before submitting a pull request.
